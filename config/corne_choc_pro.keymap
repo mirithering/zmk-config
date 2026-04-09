@@ -21,6 +21,7 @@
  */
 
 #include <behaviors.dtsi>
+#include <dt-bindings/zmk/backlight.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 
@@ -65,10 +66,10 @@
             //                       | mo UPPER | INS | DEL |   trans | trans | trans |
 
             bindings = <
-&trans  &kp EXCL  &kp AT    &kp UP     &kp DLLR   &kp PRCNT  &kp C_BRIGHTNESS_INC  &kp C_BRIGHTNESS_INC  &kp PG_UP     &kp N7        &kp N8        &kp N9        &kp BSPC       &trans
-&trans  &kp LPAR  &kp LEFT  &kp DOWN   &kp RIGHT  &kp RPAR   &kp CARET             &kp AMPERSAND         &kp PG_DN     &kp N4        &kp N5        &kp N6        &kp SEMICOLON  &trans
-&trans  &kp LBKT  &kp RBKT  &kp HASH   &kp LBRC   &kp RBRC                                               &kp ASTERISK  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp PLUS       &kp N3
-                            &mo UPPER  &kp INS    &kp DEL                                                &trans        &trans        &trans
+&bt BT_NXT   &kp EXCL  &kp AT    &kp UP     &kp DLLR   &kp PRCNT  &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC  &kp PG_UP     &kp N7        &kp N8        &kp N9        &kp BSPC       &trans
+&bl BL_TOG   &kp LPAR  &kp LEFT  &kp DOWN   &kp RIGHT  &kp RPAR   &kp CARET             &kp AMPERSAND         &kp PG_DN     &kp N4        &kp N5        &kp N6        &kp SEMICOLON  &trans
+&bootloader  &kp LBKT  &kp RBKT  &kp HASH   &kp LBRC   &kp RBRC                                               &kp ASTERISK  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp PLUS       &bootloader
+                                 &mo UPPER  &kp INS    &kp DEL                                                &trans        &trans        &trans
             >;
         };
 
