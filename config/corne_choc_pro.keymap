@@ -21,18 +21,15 @@
  */
 
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/rgb.h>
+#include <dt-bindings/zmk/keys.h>
 
 #define BASE  0
 #define FUN   1
 #define UPPER 2
 
 / {
-    chosen {
-        zmk,physical-layout = &default_layout;
-    };
+    chosen { zmk,physical-layout = &default_layout; };
 };
 
 / {
@@ -41,21 +38,24 @@
 
         default_layer {
             display-name = "QWERTY";
+
             // ---------------------------------------------------------------------------------------------
             // | ESC  |  Q  |  W  |  E  |  R  |  T  |  DEL  | EQUAL |  Y  |  U  |  I  |  O  |  P  | QUOTE |
             // | TAB  |  A  |  S  |  D  |  F  |  G  |  LGUI | MINUS |  H  |  J  |  K  |  L  |  ;  | ENTER |
             // | GRV  |  Z  |  X  |  C  |  V  |  B  |               |  \  |  N  |  M  |  ,  |  .  |  /    |
             //                        | LSHFT | BSPC | LCTRL  | LALT | SPACE | MO FUN |
+
             bindings = <
-                &kp ESC   &kp Q &kp W &kp E &kp R &kp T &kp DEL  &kp EQUAL  &kp Y    &kp U &kp I     &kp O   &kp P    &kp SQT
-                &kp TAB   &kp A &kp S &kp D &kp F &kp G &kp LGUI &kp MINUS  &kp H    &kp J &kp K     &kp L   &kp SEMI &kp RET
-                &kp GRAVE &kp Z &kp X &kp C &kp V &kp B                     &kp BSLH &kp N &kp M     &kp COMMA &kp DOT &kp FSLH
-                                      &kp LSHFT &kp BSPC &kp LCTRL          &kp LALT &kp SPACE &mo FUN
+&kp LGUI    &kp Q  &kp W  &kp E      &kp R     &kp T      &kp C_VOLUME_DOWN  &kp C_VOLUME_UP       &kp Y     &kp U      &kp I      &kp O       &kp P      &kp MINUS
+&kp TAB     &kp A  &kp S  &kp D      &kp F     &kp G      &kp GRAVE          &kp NON_US_BACKSLASH  &kp H     &kp J      &kp K      &kp L       &kp SEMI   &kp SQT
+&kp ESCAPE  &kp Z  &kp X  &kp C      &kp V     &kp B                                               &kp N     &kp M      &kp COMMA  &kp PERIOD  &kp SLASH  &kp ENTER
+                          &kp LSHFT  &kp BSPC  &kp LCTRL                                           &kp LALT  &kp SPACE  &mo FUN
             >;
         };
 
         fun_layer {
             display-name = "FUN";
+
             // Atreus FUN layer, ported. Corne-only positions (outer pinky cols on rows 1-2,
             // inner-index keys) fall through to base via &trans unless noted.
             // ---------------------------------------------------------------------------------------------
@@ -63,27 +63,30 @@
             // | trans| (  |LEFT|DOWN|RGHT| )  | trans | trans | PGDN | N4 | N5 | N6 | PLUS | trans |
             // | trans| [  | ]  | #  | {  | }  |                 | ^   | &  | *  | N1 | N2 | N3    |
             //                       | mo UPPER | INS | DEL |   trans | trans | trans |
+
             bindings = <
-                &trans &kp EXCL &kp AT    &kp UP    &kp DLLR  &kp PRCNT &trans &trans  &kp PG_UP &kp N7 &kp N8    &kp N9 &kp BSPC  &trans
-                &trans &kp LPAR &kp LEFT  &kp DOWN  &kp RIGHT &kp RPAR  &trans &trans  &kp PG_DN &kp N4 &kp N5    &kp N6 &kp PLUS  &trans
-                &trans &kp LBKT &kp RBKT  &kp HASH  &kp LBRC  &kp RBRC                 &kp CARET &kp AMPS &kp ASTRK &kp N1 &kp N2 &kp N3
-                                        &mo UPPER &kp INS &kp DEL        &trans &trans &trans
+&trans  &kp EXCL  &kp AT    &kp UP     &kp DLLR   &kp PRCNT  &kp C_BRIGHTNESS_INC  &kp C_BRIGHTNESS_INC  &kp PG_UP     &kp N7        &kp N8        &kp N9        &kp BSPC       &trans
+&trans  &kp LPAR  &kp LEFT  &kp DOWN   &kp RIGHT  &kp RPAR   &kp CARET             &kp AMPERSAND         &kp PG_DN     &kp N4        &kp N5        &kp N6        &kp SEMICOLON  &trans
+&trans  &kp LBKT  &kp RBKT  &kp HASH   &kp LBRC   &kp RBRC                                               &kp ASTERISK  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp PLUS       &kp N3
+                            &mo UPPER  &kp INS    &kp DEL                                                &trans        &trans        &trans
             >;
         };
 
         upper_layer {
             display-name = "UPPER";
+
             // Atreus UPPER: nav / media / F-keys. Empty Atreus slots host BT controls per request.
             // ---------------------------------------------------------------------------------------------
             // | trans| INS | HOME| UP  | END |PGUP| trans | trans |  UP  | F7 | F8 | F9 | F10 | trans |
             // | trans| DEL |LEFT |DOWN |RGHT |PGDN| trans | trans | DOWN | F4 | F5 | F6 | F11 | trans |
             // | trans|BTCLR|VOLUP|BT_0 |BT_1 |BT_2|               |BT_3  |BT_4| F1 | F2 | F3  | F12   |
             //                      | BOOT | VOLDN | trans |   trans | trans | SYSRST |
+
             bindings = <
-                &trans &kp INS    &kp HOME     &kp UP       &kp END      &kp PG_UP    &trans &trans &kp UP       &kp F7       &kp F8 &kp F9 &kp F10 &trans
-                &trans &kp DEL    &kp LEFT     &kp DOWN     &kp RIGHT    &kp PG_DN    &trans &trans &kp DOWN     &kp F4       &kp F5 &kp F6 &kp F11 &trans
-                &trans &bt BT_CLR &kp C_VOL_UP &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2                &bt BT_SEL 3 &bt BT_SEL 4 &kp F1 &kp F2 &kp F3  &kp F12
-                                                &trans &kp C_VOL_DN &bootloader      &sys_reset &trans &trans
+&trans  &kp INS     &kp HOME      &kp UP        &kp END       &kp PG_UP     &kp C_BACKLIGHT_TOGGLE  &trans  &kp UP        &kp F7        &kp F8  &kp F9  &kp F10  &trans
+&trans  &kp DEL     &kp LEFT      &kp DOWN      &kp RIGHT     &kp PG_DN     &trans                  &trans  &kp DOWN      &kp F4        &kp F5  &kp F6  &kp F11  &trans
+&trans  &bt BT_CLR  &kp C_VOL_UP  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2                                  &bt BT_SEL 3  &bt BT_SEL 4  &kp F1  &kp F2  &kp F3   &kp F12
+                                  &trans        &kp C_VOL_DN  &bootloader                                   &sys_reset    &trans        &trans
             >;
         };
     };
