@@ -1,0 +1,28 @@
+config ZMK_LED_INDICATORS
+    bool "LED battery indicators"
+    default n
+    depends on LED_STRIP
+
+if ZMK_LED_INDICATORS
+
+config ZMK_LED_INDICATORS_BOOT_BRIGHTNESS
+    int "LED brightness during boot display (0-255)"
+    default 30
+    range 1 255
+
+config ZMK_LED_INDICATORS_CRITICAL_BRIGHTNESS
+    int "LED brightness for critical battery warning (0-255)"
+    default 10
+    range 1 255
+
+config ZMK_LED_INDICATORS_BOOT_DURATION_S
+    int "How long to show battery on boot (seconds)"
+    default 60
+    range 5 300
+
+config ZMK_LED_INDICATORS_CRITICAL_PCT
+    int "Battery percentage threshold for always-on red"
+    default 10
+    range 1 30
+
+endif
