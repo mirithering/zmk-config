@@ -221,11 +221,6 @@ static int led_indicators_init(void) {
     }
 #endif
 
-    /* Immediate red flash to confirm code is running */
-    struct led_rgb red = {.r = 50, .g = 0, .b = 0};
-    set_all(red);
-    push();
-
     /* Wait for battery gauge to report before showing anything */
     k_work_schedule(&boot_work, K_SECONDS(2));
     return 0;
