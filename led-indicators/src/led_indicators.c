@@ -23,6 +23,10 @@
 #include <zmk/event_manager.h>
 #include <zmk/events/battery_state_changed.h>
 
+#if IS_ENABLED(CONFIG_ZMK_EXT_POWER)
+#include <drivers/ext_power.h>
+#endif
+
 LOG_MODULE_REGISTER(led_indicators, CONFIG_ZMK_LOG_LEVEL);
 
 #define LED_NODE   DT_CHOSEN(zmk_underglow)
@@ -208,6 +212,14 @@ static int led_indicators_init(void) {
         LOG_ERR("LED strip device not ready");
         return -ENODEV;
     }
+
+#if IS_ENABLED(CONFIG_ZMK_EXT_POWER)
+    /* Ensure external power is on — LEDs need it */
+    const struct device *ext_power = device_get_binding("EXT_POWER");
+    if (ext_power != NULL) {
+        ext_power_enable(ext_power);
+    }
+#endif
 
     leds_off();
 
