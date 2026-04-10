@@ -21,7 +21,6 @@
  */
 
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/backlight.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 
@@ -66,10 +65,10 @@
             //                       | mo UPPER | INS | DEL |   trans | trans | trans |
 
             bindings = <
-&bt BT_NXT   &kp EXCL  &kp AT    &kp UP     &kp DLLR   &kp PRCNT  &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC  &kp PG_UP     &kp N7        &kp N8        &kp N9        &kp BSPC       &trans
-&bl BL_TOG   &kp LPAR  &kp LEFT  &kp DOWN   &kp RIGHT  &kp RPAR   &kp CARET             &kp AMPERSAND         &kp PG_DN     &kp N4        &kp N5        &kp N6        &kp SEMICOLON  &trans
-&bootloader  &kp LBKT  &kp RBKT  &kp HASH   &kp LBRC   &kp RBRC                                               &kp ASTERISK  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp PLUS       &bootloader
-                                 &mo UPPER  &kp INS    &kp DEL                                                &trans        &trans        &trans
+&trans  &kp EXCL  &kp AT    &kp UP     &kp DLLR   &kp PRCNT  &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC  &kp PG_UP     &kp N7        &kp N8        &kp N9        &kp BSPC       &trans
+&trans  &kp LPAR  &kp LEFT  &kp DOWN   &kp RIGHT  &kp RPAR   &kp CARET             &kp AMPERSAND         &kp PG_DN     &kp N4        &kp N5        &kp N6        &kp SEMICOLON  &kp NUMBER_0
+&trans  &kp LBKT  &kp RBKT  &kp HASH   &kp LBRC   &kp RBRC                                               &kp ASTERISK  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp PLUS       &trans
+                            &mo UPPER  &kp INS    &kp DEL                                                &trans        &trans        &trans
             >;
         };
 
@@ -84,10 +83,10 @@
             //                      | BOOT | VOLDN | trans |   trans | trans | SYSRST |
 
             bindings = <
-&trans  &kp INS     &kp HOME      &kp UP        &kp END       &kp PG_UP     &kp C_BACKLIGHT_TOGGLE  &trans  &kp UP        &kp F7        &kp F8  &kp F9  &kp F10  &trans
-&trans  &kp DEL     &kp LEFT      &kp DOWN      &kp RIGHT     &kp PG_DN     &trans                  &trans  &kp DOWN      &kp F4        &kp F5  &kp F6  &kp F11  &trans
-&trans  &bt BT_CLR  &kp C_VOL_UP  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2                                  &bt BT_SEL 3  &bt BT_SEL 4  &kp F1  &kp F2  &kp F3   &kp F12
-                                  &trans        &kp C_VOL_DN  &bootloader                                   &sys_reset    &trans        &trans
+&bootloader  &kp INS     &kp HOME      &kp UP        &kp END       &kp PG_UP     &kp C_BACKLIGHT_TOGGLE  &trans  &kp UP        &kp F7        &kp F8  &kp F9  &kp F10  &bootloader
+&sys_reset   &kp DEL     &kp LEFT      &kp DOWN      &kp RIGHT     &kp PG_DN     &trans                  &trans  &kp DOWN      &kp F4        &kp F5  &kp F6  &kp F11  &sys_reset
+&trans       &bt BT_CLR  &kp C_VOL_UP  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2                                  &bt BT_SEL 3  &bt BT_SEL 4  &kp F1  &kp F2  &kp F3   &kp F12
+                                       &trans        &kp C_VOL_DN  &bootloader                                   &sys_reset    &trans        &trans
             >;
         };
     };
