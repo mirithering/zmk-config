@@ -68,7 +68,7 @@
 &trans  &kp EXCL  &kp AT    &kp UP     &kp DLLR   &kp PRCNT  &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC  &kp PG_UP     &kp N7        &kp N8        &kp N9        &kp BSPC       &kp EQUAL
 &trans  &kp LPAR  &kp LEFT  &kp DOWN   &kp RIGHT  &kp RPAR   &kp CARET             &kp AMPERSAND         &kp PG_DN     &kp N4        &kp N5        &kp N6        &kp SEMICOLON  &kp NUMBER_0
 &trans  &kp LBKT  &kp RBKT  &kp HASH   &kp LBRC   &kp RBRC                                               &kp ASTERISK  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp PLUS       &trans
-                            &mo UPPER  &kp INS    &kp DEL                                                &trans        &trans        &trans
+                            &mo UPPER  &trans     &trans                                                 &trans        &trans        &trans
             >;
         };
 
