@@ -34,26 +34,26 @@
 
 / {
     behaviors {
-        // German umlauts: LAlt + a/o/u sends RAlt + a/o/u (AltGr).
-        // Requires host xkb layout = us(altgr-intl). LAlt is suppressed
-        // by mod-morph, so the OS sees only RAlt+letter → ä/ö/ü.
-        // LShift+LAlt+letter → Ä/Ö/Ü works the same way.
+        // German umlauts on us(altgr-intl): the umlauts live on AltGr+q/y/p
+        // (acutes are on AltGr+a/u/o). Mod-morph translates LAlt + a/o/u
+        // into RAlt + q/y/p and suppresses LAlt, so the host sees only
+        // RAlt+letter → ä/ü/ö. LShift+LAlt+letter → Ä/Ü/Ö.
         am: a_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp A>, <&kp RA(A)>;
+            bindings = <&kp A>, <&kp RA(Q)>;
             mods = <(MOD_LALT)>;
         };
         om: o_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp O>, <&kp RA(O)>;
+            bindings = <&kp O>, <&kp RA(P)>;
             mods = <(MOD_LALT)>;
         };
         um: u_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp U>, <&kp RA(U)>;
+            bindings = <&kp U>, <&kp RA(Y)>;
             mods = <(MOD_LALT)>;
         };
     };
