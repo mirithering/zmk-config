@@ -33,6 +33,31 @@
 };
 
 / {
+    behaviors {
+        // German umlauts: LAlt + a/o/u sends RAlt + a/o/u (AltGr).
+        // Requires host xkb layout = us(altgr-intl). LAlt is suppressed
+        // by mod-morph, so the OS sees only RAlt+letter → ä/ö/ü.
+        // LShift+LAlt+letter → Ä/Ö/Ü works the same way.
+        am: a_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp A>, <&kp RA(A)>;
+            mods = <(MOD_LALT)>;
+        };
+        om: o_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp O>, <&kp RA(O)>;
+            mods = <(MOD_LALT)>;
+        };
+        um: u_morph {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp U>, <&kp RA(U)>;
+            mods = <(MOD_LALT)>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -46,8 +71,8 @@
             //                        | LSHFT | BSPC | LCTRL  | LALT | SPACE | MO FUN |
 
             bindings = <
-&kp LGUI    &kp Q  &kp W  &kp E      &kp R     &kp T      &kp C_VOLUME_DOWN  &kp C_VOLUME_UP       &kp Y     &kp U      &kp I      &kp O       &kp P      &kp MINUS
-&kp TAB     &kp A  &kp S  &kp D      &kp F     &kp G      &kp GRAVE          &kp NON_US_BACKSLASH  &kp H     &kp J      &kp K      &kp L       &kp SEMI   &kp SQT
+&kp LGUI    &kp Q  &kp W  &kp E      &kp R     &kp T      &kp C_VOLUME_DOWN  &kp C_VOLUME_UP       &kp Y     &um        &kp I      &om         &kp P      &kp MINUS
+&kp TAB     &am    &kp S  &kp D      &kp F     &kp G      &kp GRAVE          &kp NON_US_BACKSLASH  &kp H     &kp J      &kp K      &kp L       &kp SEMI   &kp SQT
 &kp ESCAPE  &kp Z  &kp X  &kp C      &kp V     &kp B                                               &kp N     &kp M      &kp COMMA  &kp PERIOD  &kp SLASH  &kp ENTER
                           &kp LSHFT  &kp BSPC  &kp LCTRL                                           &kp LALT  &kp SPACE  &mo FUN
             >;
